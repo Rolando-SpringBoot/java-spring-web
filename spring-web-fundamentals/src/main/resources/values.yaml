@@ -1,0 +1,6 @@
+config:
+  code: 23232
+  username: 'jonas'
+  message: 'Hola que tal como está'
+  listOfValues: hola,que,tal,hoy
+  valuesMap: '{product: "Cpu Intel Core i7 12th",description: "Alder lake, 12 core, a 5 GHz",price: "1000"}'
