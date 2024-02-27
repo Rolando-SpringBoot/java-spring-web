@@ -1,4 +1,4 @@
-package com.rbard.example.controller;
+package com.rbard.example.fundamental.controller;
 
 import com.rbard.example.model.User;
 import java.util.ArrayList;

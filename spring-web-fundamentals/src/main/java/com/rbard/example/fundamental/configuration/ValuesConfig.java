@@ -1,4 +1,4 @@
-package com.rbard.example.configuration;
+package com.rbard.example.fundamental.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

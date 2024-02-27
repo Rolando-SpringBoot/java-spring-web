@@ -1,4 +1,4 @@
-package com.rbard.example.controller;
+package com.rbard.example.fundamental.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

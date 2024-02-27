@@ -1,0 +1,4 @@
+config:
+  calendar:
+    open: 11
+    close: 18

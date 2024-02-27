@@ -1,4 +1,4 @@
-package com.rbard.example.controller;
+package com.rbard.example.fundamental.controller;
 
 import com.rbard.example.model.dto.ParamDto;
 import com.rbard.example.model.dto.ParamMixDto;

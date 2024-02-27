@@ -1,4 +1,4 @@
-package com.rbard.example.configuration;
+package com.rbard.example.fundamental.configuration;
 
 import java.io.IOException;
 import java.util.Properties;

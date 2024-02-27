@@ -3,3 +3,5 @@
 ### th:if + th:each + th:text + th:href + redirect:/ + forward:/
 ### HttpServletRequest + @PropertySource + Expression Language @Value #{...}
 
+# Interceptors Spring
+### HandlerInterceptor + WebMvcConfigurer
