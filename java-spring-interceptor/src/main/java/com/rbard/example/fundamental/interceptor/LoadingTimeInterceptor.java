@@ -1,7 +1,11 @@
 package com.rbard.example.fundamental.interceptor;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
@@ -34,21 +38,21 @@ public class LoadingTimeInterceptor implements HandlerInterceptor {
     /*
       leyendo payload que viene del request
      */
-//    StringBuilder contentBody  = new StringBuilder("");
-//    BufferedReader bufferedReader = null;
-//
-//    InputStream inputStream = request.getInputStream();
-//    if(inputStream != null) {
-//      bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-//      char[] charBuffer = new char[128];
-//      int bytesRead = -1;
-//      while((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-//        contentBody.append(charBuffer, 0, bytesRead);
-//      }
-//    }
-//
-//    String requestBody = contentBody.toString();
-//    log.atInfo().setMessage("requestBody={}").addArgument(requestBody).log();
+    Map<String, Object> requestBody = new ObjectMapper().readValue(request.getInputStream(),
+        new TypeReference<HashMap<String, Object>>() {});
+    log.atInfo().setMessage("requestBody={}").addArgument(requestBody).log();
+
+    /*
+      leyendo headers
+     */
+    String headerContentType = request.getHeader("content-type");
+    log.atInfo().setMessage("contentType={}").addArgument(headerContentType).log();
+
+    /*
+      leyendo request params
+     */
+    String parameter = request.getParameter("id");
+    log.atInfo().setMessage("parameter={}").addArgument(parameter).log();
 
     /*
       personalizando respuesta en caso de devolver un false
