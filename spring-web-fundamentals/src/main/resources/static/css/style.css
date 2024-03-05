@@ -1,0 +1,26 @@
+*,*::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-top: 1px;
+}
+
+h1.color-rojo {
+  color: hsl(0 100% 50%);
+}
+
+h2.color-azul {
+  color: hsl(240 100% 50%);
+}
+
+div.box-img {
+  width: 300px;
+  height: 300px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

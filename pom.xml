@@ -17,6 +17,7 @@
 	<modules>
 		<module>spring-web-fundamentals</module>
     <module>java-spring-interceptor</module>
+		<module>spring-web-form</module>
   </modules>
 
 	<properties>

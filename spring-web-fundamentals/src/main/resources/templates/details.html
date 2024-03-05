@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title th:text="${title}">Document</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
 <body>
-  <h1 th:text="${title}"></h1>
+  <h1 class="color-rojo" th:text="${title}"></h1>
+  <h2 class="color-azul" th:text="${'Decorando con estilo css recursos estáticos'}"></h2>
+  <div class="box-img">
+    <img th:src="@{/images/spring.webp}" alt="spring image" />
+  </div>
   <ul>
     <li th:text="${user.name}"></li>
     <li th:text="${user.lastname}"></li>
