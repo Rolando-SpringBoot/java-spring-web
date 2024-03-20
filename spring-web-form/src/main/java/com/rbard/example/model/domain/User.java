@@ -2,15 +2,18 @@ package com.rbard.example.model.domain;
 
 import com.rbard.example.validator.annotation.IdentityRegex;
 import com.rbard.example.validator.annotation.Required;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -48,7 +51,18 @@ public class User {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate birthDate;
 
-  @NotBlank
-  private String country;
+  @Valid
+  @NotNull
+  private Country country;
+
+  @NotEmpty
+  private List<Role> roles;
+
+  private Boolean enabled;
+
+  @NotEmpty
+  private String gender;
+
+  private String secretValue;
 
 }

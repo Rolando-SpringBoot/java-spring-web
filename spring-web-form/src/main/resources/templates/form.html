@@ -3,90 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <title th:text="${title}"></title>
+  <!-- calling bootstrap styles of css though its css link -->
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">-->
+  <!-- calling the inner directory from resources/static -->
+  <link rel="stylesheet" th:href="@{'/css/bootstrap-5.0.2-dist/css/bootstrap.min.css'}"/>
+
 </head>
 <body>
-<h3 th:text="${title}"></h3>
+  <h3 class="mt-3 text-center" th:text="${title}"></h3>
 
-<!--
-  th:field -> It get a field ot the object which you have declared into th:object
- -->
-<form th:action="@{/form}" th:object="${user}" method="POST">
-  <div>
-    <label for="country">País</label>
-    <div>
-      <select id="country" th:field="*{country}" >
-        <option value="">--selecionar</option>
-        <option th:each="country: ${countries}" th:value="${country}" th:text="${country}"></option>
-      </select>
-    </div>
-    <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+  <!--
+    th:field -> It get a field ot the object which you have declared into th:object
+   -->
+  <div class="container">
+    <form th:action="@{/form}" th:object="${user}" method="POST">
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="enabled" class="form-check-label">Enabled</label>
+        </div>
+        <div class="col-auto">
+          <input type="checkbox" id="enabled" th:field="*{enabled}" class="form-check-input" />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label class="form-label">Gender:</label>
+        </div>
+        <div th:each="gender: ${genderList}" class="col-auto">
+          <input type="radio" th:id="${#ids.seq('gender')}" name="gender" th:value="${gender}" class="form-check-input"/>
+          <label th:for="${#ids.prev('gender')}" th:text="${gender}" class="form-check-label"></label>
+        </div>
+        <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="country" class="form-label">Country:</label>
+        </div>
+        <div class="col-auto">
+          <select id="country" th:field="*{country}" class="form-select">
+            <option value="">--seleccionar</option>
+            <option th:each="country: ${countryList}" th:value="${country.id}" th:text="${country.name}"></option>
+          </select>
+        </div>
+        <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label class="form-label">Roles: </label>
+        </div>
+        <div th:each="role: ${roleList}" class="col-auto">
+          <input th:id="${#ids.seq('role')}" type="checkbox" th:field="*{roles}" th:value="${role.id}" class="form-check-input">
+          <label th:for="${#ids.prev('role')}" th:text="${role.name}" class="form-check-label"></label>
+        </div>
+        <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="identity" class="form-label">Identity</label>
+        </div>
+        <div class="col-auto">
+          <input type="text" id="identity" th:field="*{identity}" class="form-control"/>
+        </div>
+        <div th:if="${#fields.hasErrors('identity')}" th:errors="*{identity}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="firstname" class="form-label">Firstname</label>
+        </div>
+        <div class="col-auto">
+          <input id="firstname" type="text" th:field="*{firstname}" class="form-control"/>
+        </div>
+        <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="lastname" class="form-label">Lastname</label>
+        </div>
+        <div class="col-auto">
+          <input id="lastname" type="text" th:field="*{lastname}" class="form-control"/>
+        </div>
+        <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="username" class="form-label">Username</label>
+        </div>
+        <div class="col-auto">
+    <!--      <input id="username" type="text" name="username" th:value="${myuser?.username}">-->
+          <input id="username" type="text" th:field="*{username}" class="form-control"/>
+        </div>
+    <!--    <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div>-->
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="password" class="form-label">Password</label>
+        </div>
+        <div class="col-auto">
+          <input id="password" type="password" name="password" class="form-control"/>
+        </div>
+    <!--    <div th:if="${error != null && error.containsKey('password')}" th:text="${error.password}"></div>-->
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="email" class="form-label">Email</label>
+        </div>
+        <div class="col-auto">
+    <!--      <input id="email" type="email" name="email" th:value="${myuser?.email}">-->
+          <input id="email" type="text" th:field="*{email}" class="form-control"/>
+        </div>
+    <!--    <div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div>-->
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="account" class="form-label">Account</label>
+        </div>
+        <div class="col-auto">
+          <input type="text" id="account" th:field="*{account}" class="form-control"/>
+        </div>
+        <div th:if="${#fields.hasErrors('account')}" th:errors="*{account}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-auto">
+          <label for="birthdate" class="form-label">BirthDate</label>
+        </div>
+        <div class="col-auto">
+          <input type="date" id="birthdate" th:field="*{birthDate}" placeholder="yyyy-MM-dd" class="form-control"/>
+        </div>
+        <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" class="col-md-5 alert alert-danger"></div>
+      </div>
+      <div class="mb-3">
+        <div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </div>
+      <input type="hidden" th:field="*{secretValue}">
+    </form>
   </div>
-  <div>
-    <label for="identity">Identity</label>
-    <div>
-      <input type="text" id="identity" th:field="*{identity}"/>
-    </div>
-    <div th:if="${#fields.hasErrors('identity')}" th:errors="*{identity}"></div>
-  </div>
-  <div>
-    <label for="firstname">Firstname</label>
-    <div>
-      <input id="firstname" type="text" th:field="*{firstname}" />
-    </div>
-    <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
-  </div>
-  <div>
-    <label for="lastname">Lastname</label>
-    <div>
-      <input id="lastname" type="text" th:field="*{lastname}" />
-    </div>
-    <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
-  </div>
-  <div>
-    <label for="username">Username</label>
-    <div>
-<!--      <input id="username" type="text" name="username" th:value="${myuser?.username}">-->
-      <input id="username" type="text" th:field="*{username}" />
-    </div>
-<!--    <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div>-->
-    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <div>
-      <input id="password" type="password" name="password" />
-    </div>
-<!--    <div th:if="${error != null && error.containsKey('password')}" th:text="${error.password}"></div>-->
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-  </div>
-  <div>
-    <label for="email">Email</label>
-    <div>
-<!--      <input id="email" type="email" name="email" th:value="${myuser?.email}">-->
-      <input id="email" type="text" th:field="*{email}" />
-    </div>
-<!--    <div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div>-->
-    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-  </div>
-  <div>
-    <label for="account">Account</label>
-    <div>
-      <input type="text" id="account" th:field="*{account}" />
-    </div>
-    <div th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div>
-  </div>
-  <div>
-    <label for="birthdate">BirthDate</label>
-    <div>
-      <input type="date" id="birthdate" th:field="*{birthDate}" placeholder="yyyy-MM-dd"/>
-    </div>
-    <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
-  </div>
-  <div>
-    <div>
-      <button type="submit">Enviar</button>
-    </div>
-  </div>
-</form>
 </body>
 </html>
